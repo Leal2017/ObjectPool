@@ -1,0 +1,32 @@
+POOL สนำร
+
+1.
+if (destroy) PoolManager.ReturnObjectToPool(prefab, gameObject);
+
+2.
+if(PoolManager.DoesPoolExist(explosionData.prefab)) 
+   explosion = PoolManager.GetObjectFromPool(explosionData.prefab);
+else explosion	= Loader.LoadGameObject("Effects/" + explosionData.prefab + "_Prefab");
+
+3.
+
+ public static GameObject LoadGameObject(string aPathGameObjectName)
+	
+  {
+		
+        Object tObject;
+		
+       tObject = Resources.Load("Prefabs/" + aPathGameObjectName, typeof(GameObject));
+
+		        if (tObject != null)
+          {
+	
+            GameObject tGameObject = Object.Instantiate(tObject) as GameObject;
+			            tGameObject.name = aPathGameObjectName.Split('/')[1]; 
+			             return tGameObject;
+		
+          }
+          else 
+             return null;
+	
+}
